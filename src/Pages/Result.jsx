@@ -1,5 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { resetPlayer, resetResult } from "../Redux/Actions/actions.type";
 
 const Result = () => {
   const { nbGame, nbVictory, nbLoose } = useSelector(
@@ -7,11 +8,18 @@ const Result = () => {
   );
   const { playerArr } = useSelector((state) => state.gameReducer);
 
+  const dispatch = useDispatch();
+
   let newArrayPlayer = [];
 
   playerArr.map((el) => {
     newArrayPlayer.push(el.toUpperCase())
   })
+
+  const handleReset = () => {
+    dispatch(resetResult());
+    dispatch(resetPlayer());
+  }
 
   return (
     <div>
@@ -43,6 +51,7 @@ const Result = () => {
               Nombre de défaite : <span className="text-rose">{nbLoose}</span>
             </li>
           </ul>
+          <button onClick={handleReset} className="shadow-md rounded-md bg-rose p-5 w-max mb-20 hover:text-white">Réinitialiser</button>
         </div>
       </main>
     </div>

@@ -9,6 +9,8 @@ import {
   ADD_LOOSE,
   NAME_PLAYER,
   RESET_LETTER,
+  RESET_RESULT,
+  RESET_PLAYER,
 } from "../Constants/actions";
 
 //------GAME
@@ -32,7 +34,10 @@ export const newNamePlayer = (value) => {
 
 export const resetLetter = () => {
   return { type: RESET_LETTER };
-};// arrete de tout casser tom 
+};
+export const resetPlayer = () => {
+  return { type: RESET_PLAYER };
+};
 
 //----RESULT
 
@@ -44,4 +49,7 @@ export const addLoose = () => {
 };
 export const addVictory = () => {
   return { type: ADD_VICTORY };
+};
+export const resetResult = () => {
+  return { type: RESET_RESULT };
 };

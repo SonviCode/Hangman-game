@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Components/Modal";
 import {
   addGame,
+  addLoose,
   addVictory,
+  error,
   newNamePlayer,
   selectLetter,
   selectWord,
@@ -22,8 +24,23 @@ const Game = () => {
 
   let checker = (arr, target) => target.every((e) => arr.includes(e));
 
+  const sansAccents = (str) => {
+    const s = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return s;
+  };
+
   const handleLetter = (el) => {
     dispatch(selectLetter(el));
+
+    if (!selectedWord.includes(el)) {
+      dispatch(error());
+
+      console.log(el);
+
+      if (nbError === 7) {
+        dispatch(addLoose());
+      }
+    }
   };
 
   useEffect(() => {
@@ -31,7 +48,6 @@ const Game = () => {
       checker(letterArr, selectedWord.split("")) == true &&
       selectedWord !== ""
     ) {
-      console.log("gg");
       dispatch(addVictory());
     }
   }, [letterArr]);
@@ -58,16 +74,15 @@ const Game = () => {
     dispatch(addGame());
   };
 
-  const sansAccents = (str) => {
-    const s = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    return s;
-  };
-
   return (
     <main>
       <div className="px-[10%] mt-10 text-center flex flex-col items-center">
-        {victoire == true ? <Modal victoire={victoire}/> : null}
-        {defaite == true ? <Modal selectedWord={selectedWord}/> : null}
+        {victoire == true ? (
+          <Modal victoire={victoire} namePlayer={namePlayer} />
+        ) : null}
+        {defaite == true ? (
+          <Modal selectedWord={selectedWord} namePlayer={namePlayer} />
+        ) : null}
         {selectedWord == null ? (
           ""
         ) : (

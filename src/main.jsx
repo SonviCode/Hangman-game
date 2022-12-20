@@ -6,13 +6,13 @@ import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import "./styles/index.css";
 import { save, load } from "redux-localstorage-simple";
-import customMiddleware from "./Redux/Middlewares/customMiddleware";
+// import customMiddleware from "./Redux/Middlewares/customMiddleware";
 
 const createStoreWithMiddleware = applyMiddleware(
   save({
     // states: ["reducerDragon.dragon", "reducerKnight.knight"],
   }),
-  customMiddleware
+  // customMiddleware
 )(createStore);
 
 const store = createStoreWithMiddleware(

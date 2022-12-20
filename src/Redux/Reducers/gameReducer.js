@@ -5,6 +5,7 @@ import {
   ERROR,
   NAME_PLAYER,
   RESET_LETTER,
+  RESET_PLAYER,
 } from "../Constants/actions";
 
 const initialState = {
@@ -14,7 +15,6 @@ const initialState = {
   letterArr: [],
   playerArr: [],
   namePlayer: "",
-
 };
 
 const gameReducer = (state = initialState, action = {}) => {
@@ -41,7 +41,7 @@ const gameReducer = (state = initialState, action = {}) => {
         ...state,
         letterArr: [],
         nbError: 0,
-      }
+      };
 
     case SELECT_LETTER:
       return {
@@ -55,7 +55,12 @@ const gameReducer = (state = initialState, action = {}) => {
         namePlayer: action.value,
         playerArr: [...state.playerArr, action.value],
       };
-    
+
+    case RESET_PLAYER:
+      return {
+        ...state,
+        playerArr: [],
+      };
 
     default:
       return state;
