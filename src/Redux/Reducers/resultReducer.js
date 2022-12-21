@@ -1,4 +1,10 @@
-import { ADD_GAME, ADD_LOOSE, ADD_VICTORY, RESET_RESULT } from "../Constants/actions";
+import {
+  ADD_GAME,
+  ADD_LOOSE,
+  ADD_VICTORY,
+  RESET_GAME,
+  RESET_RESULT,
+} from "../Constants/actions";
 
 const initialState = {
   nbGame: 0,
@@ -28,6 +34,12 @@ const resultReducer = (state = initialState, action = {}) => {
         ...state,
         victoire: true,
         nbVictory: state.nbVictory + 1,
+      };
+    case RESET_GAME:
+      return {
+        ...state,
+        defaite: false,
+        victoire: false,
       };
     case RESET_RESULT:
       return {

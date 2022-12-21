@@ -4,6 +4,7 @@ import {
   selectWord,
   addGame,
   resetLetter,
+  resetGame,
 } from "../Redux/Actions/actions.type";
 
 const Modal = ({ victoire, selectedWord, namePlayer }) => {
@@ -13,7 +14,7 @@ const Modal = ({ victoire, selectedWord, namePlayer }) => {
   const goToHome = () => {
     navigate("/");
     dispatch(selectWord(""));
-    dispatch(addGame());
+    dispatch(resetGame())
     dispatch(resetLetter());
   };
 

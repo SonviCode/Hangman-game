@@ -35,8 +35,6 @@ const Game = () => {
     if (!selectedWord.includes(el)) {
       dispatch(error());
 
-      console.log(el);
-
       if (nbError === 7) {
         dispatch(addLoose());
       }
@@ -60,10 +58,10 @@ const Game = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const selectNamePlayer = e.target.elements.name.value;
+    const selectNamePlayer = e.target.elements.name.value.toUpperCase();
 
     if (selectNamePlayer.trim() == "") {
-      alert("N'oubli pas ton nom !");
+      alert("N'oublie pas ton nom !");
       return;
     }
 
@@ -152,7 +150,9 @@ const Game = () => {
               <input
                 type="text"
                 id="name"
+                style={{textTransform: "uppercase"}}
                 className="shadow-md rounded-md border-black border-2 p-2"
+                
               />
             </div>
             <button className="p-2 bg-rose rounded-md hover:shadow-md hover:text-white">

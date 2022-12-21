@@ -11,6 +11,7 @@ import {
   RESET_LETTER,
   RESET_RESULT,
   RESET_PLAYER,
+  RESET_GAME,
 } from "../Constants/actions";
 
 //------GAME
@@ -52,4 +53,7 @@ export const addVictory = () => {
 };
 export const resetResult = () => {
   return { type: RESET_RESULT };
+};
+export const resetGame = () => {
+  return { type: RESET_GAME };
 };

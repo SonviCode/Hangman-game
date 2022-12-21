@@ -10,31 +10,36 @@ const Result = () => {
 
   const dispatch = useDispatch();
 
-  let newArrayPlayer = [];
+  // Unique array without duplicates
+  const uniquePlayer = [...new Set(playerArr)];
 
-  playerArr.map((el) => {
-    newArrayPlayer.push(el.toUpperCase())
-  })
+  // This array counts duplicates
+  const counterPlayer = uniquePlayer.map((value) => [
+    value,
+    playerArr.filter((str) => str === value).length,
+  ]);
 
   const handleReset = () => {
     dispatch(resetResult());
     dispatch(resetPlayer());
-  }
+  };
 
   return (
     <div>
       <main>
         <div className="px-[10%] flex flex-col mt-10 ">
-          <h1 className="text-3xl underline mb-20 text-center">Page des resultats :</h1>
+          <h1 className="text-3xl underline mb-20 text-center">
+            Page des resultats :
+          </h1>
           <h2>Noms des participants :</h2>
           <ul className="border border-gray-200 rounded overflow-hidden shadow-md w-full relative mb-20">
-            {newArrayPlayer.sort().map((el, index) => {
+            {counterPlayer.sort().map((el, index) => {
               return (
                 <li
                   className="px-4 py-2 bg-white w-full hover:bg-blue-100 hover:text-rose border-b last:border-none border-blue-200 transition-all duration-300 ease-in-out  flex items-center"
                   key={index}
                 >
-                  {el}
+                  {el[0]} - {el[1]}x
                 </li>
               );
             })}
@@ -51,7 +56,12 @@ const Result = () => {
               Nombre de défaite : <span className="text-rose">{nbLoose}</span>
             </li>
           </ul>
-          <button onClick={handleReset} className="shadow-md rounded-md bg-rose p-5 w-max mb-20 hover:text-white">Réinitialiser</button>
+          <button
+            onClick={handleReset}
+            className="shadow-md rounded-md bg-rose p-5 w-max mb-20 hover:text-white"
+          >
+            Réinitialiser
+          </button>
         </div>
       </main>
     </div>

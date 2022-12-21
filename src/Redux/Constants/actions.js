@@ -13,3 +13,4 @@ export const ADD_GAME = "ADD_GAME";
 export const ADD_VICTORY = "ADD_VICTORY";
 export const ADD_LOOSE = "ADD_LOOSE";
 export const RESET_RESULT = "RESET_RESULT";
+export const RESET_GAME = "RESET_GAME";
