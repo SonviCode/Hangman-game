@@ -72,15 +72,14 @@ const Game = () => {
     dispatch(addGame());
   };
 
+  
   return (
     <main>
       <div className="px-[10%] mt-10 text-center flex flex-col items-center">
-        {victoire == true ? (
-          <Modal victoire={victoire} namePlayer={namePlayer} />
-        ) : null}
-        {defaite == true ? (
+        {victoire == true || defaite == true ? (
           <Modal selectedWord={selectedWord} namePlayer={namePlayer} />
         ) : null}
+
         {selectedWord == null ? (
           ""
         ) : (
@@ -115,12 +114,15 @@ const Game = () => {
             })}
           </ul>
         </div>
-        <ul className="flex flex-wrap gap-5 justify-center items-center my-10">
+        <ul className="flex flex-wrap gap-2 sm:gap-5 justify-center items-center my-10 max-w-[800px]">
           {alphabet.map((el, index) => {
             if (letterArr.includes(el)) {
               return (
                 <li
-                  className="w-20 h-10 flex justify-center items-center bg-gray-100 cursor-pointer uppercase"
+                  className={`w-14 sm:w-20 h-10  flex justify-center items-center cursor-pointer uppercase
+                    ${
+                      selectedWord.includes(el) ? "bg-green-400" : "bg-red-400"
+                    }`}
                   key={index}
                 >
                   {el}
@@ -130,7 +132,7 @@ const Game = () => {
               return (
                 <li
                   onClick={() => handleLetter(el)}
-                  className="w-20 h-10 flex justify-center items-center bg-blue-200 cursor-pointer uppercase"
+                  className="w-14 sm:w-20 h-10 flex justify-center items-center bg-stone-300 cursor-pointer uppercase hover:shadow-md hover:text-white"
                   key={index}
                 >
                   {el}
@@ -150,9 +152,8 @@ const Game = () => {
               <input
                 type="text"
                 id="name"
-                style={{textTransform: "uppercase"}}
+                style={{ textTransform: "uppercase" }}
                 className="shadow-md rounded-md border-black border-2 p-2"
-                
               />
             </div>
             <button className="p-2 bg-rose rounded-md hover:shadow-md hover:text-white">

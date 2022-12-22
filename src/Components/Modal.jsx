@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   selectWord,
@@ -7,14 +7,16 @@ import {
   resetGame,
 } from "../Redux/Actions/actions.type";
 
-const Modal = ({ victoire, selectedWord, namePlayer }) => {
+const Modal = ({selectedWord, namePlayer }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { victoire } = useSelector((state) => state.resultReducer);
 
   const goToHome = () => {
     navigate("/");
     dispatch(selectWord(""));
-    dispatch(resetGame())
+    dispatch(resetGame());
     dispatch(resetLetter());
   };
 
@@ -23,7 +25,7 @@ const Modal = ({ victoire, selectedWord, namePlayer }) => {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow-md p-20 z-50">
         <h2 className="w-max mb-5">
           {victoire
-            ? `Bravo ${namePlayer} tu as gagné !`
+            ? `Bravo ${namePlayer} tu as gagné ! le mot était bien : ${selectedWord.toUpperCase()}`
             : `Oh non ${namePlayer}, tu as perdu ! le mot était : ${selectedWord.toUpperCase()}`}
         </h2>
         <button
