@@ -84,7 +84,7 @@ const Game = () => {
           ""
         ) : (
           <img
-            src={`../../public/${nbError}.jpg`}
+            src={`/${nbError}.jpg`}
             className="w-full max-w-[200px] h-auto mb-10"
             alt="nombre de vie"
           />

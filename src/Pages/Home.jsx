@@ -45,7 +45,7 @@ const Home = () => {
         </p>
         <img
           className="w-full max-w-[600px] h-auto mb-10"
-          src="../../public/Le-Pendu.webp"
+          src="/Le-Pendu.webp"
           alt="#"
         />
 
