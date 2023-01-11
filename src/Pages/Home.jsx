@@ -1,36 +1,16 @@
-import { React, useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { allWords } from "../Redux/Actions/actions.type";
+
 
 const Home = () => {
   // const { nb }
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  let words = [];
-
+  
   const goToGame = () => {
     navigate("/game");
   };
 
-  const fetchingJson = () => {
-    axios
-      .get(
-        "https://raw.githubusercontent.com/nmondon/mots-frequents/master/data/frequence.json"
-      )
-      .then((res) => {
-        res.data.map((item) => {
-          words.push(item.label);
-        });
-       
-        dispatch(allWords(words));
-      });
-  };
-
-  useEffect(() => {
-    fetchingJson();
-  }, []);
+  
 
   return (
     <main>
